@@ -22,10 +22,92 @@ header {
   background-color: #1a237e;
   color: white;
   border-radius: 5px;
+  position: relative;
 }
 
 header h1 {
   margin-bottom: 10px;
+}
+
+/* Auth Section Styles */
+#auth-section {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
+.auth-btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.auth-btn:hover {
+  background-color: #45a049;
+}
+
+#logout-btn {
+  background-color: #f44336;
+}
+
+#logout-btn:hover {
+  background-color: #da190b;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  background-color: white;
+  margin: 15% auto;
+  padding: 20px;
+  border-radius: 5px;
+  width: 80%;
+  max-width: 500px;
+  position: relative;
+}
+
+.modal-content h3 {
+  color: #333;
+  margin-bottom: 20px;
+}
+
+#user-section {
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+#user-name {
+  font-weight: bold;
+}
+
+#login-section button,
+#user-section button {
+  background-color: transparent;
+  border: 1px solid white;
+  color: white;
+  padding: 5px 15px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+#login-section button:hover,
+#user-section button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 main {
@@ -37,7 +119,15 @@ main {
 
 @media (min-width: 768px) {
   main {
-    grid-template-columns: 2fr 1fr;
+    flex-wrap: nowrap;
+  }
+  
+  #activities-container {
+    flex: 2;
+  }
+  
+  #signup-container {
+    flex: 1;
   }
 }
 
@@ -45,33 +135,95 @@ section {
   background-color: white;
   padding: 20px;
   border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  max-width: 500px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 section h3 {
   margin-bottom: 20px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid #ddd;
   color: #1a237e;
 }
 
 .activity-card {
-  margin-bottom: 15px;
-  padding: 15px;
   border: 1px solid #ddd;
+  padding: 15px;
+  margin-bottom: 15px;
   border-radius: 5px;
-  background-color: #f9f9f9;
 }
 
 .activity-card h4 {
+  color: #1a237e;
   margin-bottom: 10px;
-  color: #0066cc;
 }
 
 .activity-card p {
-  margin-bottom: 8px;
+  margin-bottom: 10px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+}
+
+button {
+  background-color: #1a237e;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button:hover {
+  background-color: #283593;
+}
+
+.message {
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 3px;
+}
+
+.success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.error {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+.info {
+  background-color: #cce5ff;
+  color: #004085;
+  border: 1px solid #b8daff;
+}
+
+.hidden {
+  display: none !important;
+}
+
+footer {
+  text-align: center;
+  margin-top: 50px;
+  padding: 20px;
+  color: #666;
 }
 
 /* New styles for participants section */
@@ -130,71 +282,27 @@ section h3 {
   font-style: italic;
 }
 
-.form-group {
-  margin-bottom: 15px;
-}
-
-.form-group label {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
-}
-
-.form-group input,
-.form-group select {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-size: 16px;
-}
-
-button {
-  background-color: #1a237e;
-  color: white;
-  border: none;
-  padding: 10px 15px;
-  font-size: 16px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
-
-button:hover {
-  background-color: #3949ab;
-}
-
-.message {
-  margin-top: 20px;
+/* Update existing message styles */
+#message {
+  margin: 1rem 0;
   padding: 10px;
   border-radius: 4px;
 }
 
 .success {
-  background-color: #e8f5e9;
-  color: #2e7d32;
-  border: 1px solid #a5d6a7;
+  background-color: #dff0d8;
+  color: #3c763d;
+  border: 1px solid #d6e9c6;
 }
 
 .error {
-  background-color: #ffebee;
-  color: #c62828;
-  border: 1px solid #ef9a9a;
+  background-color: #f2dede;
+  color: #a94442;
+  border: 1px solid #ebccd1;
 }
 
-.info {
-  background-color: #d1ecf1;
-  color: #0c5460;
-  border: 1px solid #bee5eb;
-}
-
-.hidden {
+/* Hide registration buttons for non-teachers */
+.register-btn,
+.unregister-btn {
   display: none;
-}
-
-footer {
-  text-align: center;
-  margin-top: 30px;
-  padding: 20px;
-  color: #666;
 }
